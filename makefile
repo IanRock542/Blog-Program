@@ -7,24 +7,19 @@ BlogPart8: BlogPart8.o Area.o Post.o  User.o Superuser.o UserList.o
 BlogPart8.o: BlogPart8.cpp
 		 $(CC) -c BlogPart8.cpp
 
-Area.o: Area.h Area.cpp
-		 $(CC) -c Area.h
+Area.o: Area.cpp
 		 $(CC) -c Area.cpp
 
-Post.o: Post.h Post.cpp
-		 $(CC) -c Post.h
+Post.o: Post.cpp
 		 $(CC) -c Post.cpp
 
-User.o: User.h User.cpp
-		 $(CC) -c User.h
+User.o: User.cpp
 		 $(CC) -c User.cpp
 
-Superuser.o: Superuser.h Superuser.cpp
-		 $(CC) -c Superuser.h
+Superuser.o: Superuser.cpp
 		 $(CC) -c Superuser.cpp
 
-UserList.o: UserList.h UserList.cpp
-		 $(CC) -c UserList.h
+UserList.o: UserList.cpp
 		 $(CC) -c UserList.cpp
 clean:
 		rm -rf *.o  *.gch  BlogPart8
