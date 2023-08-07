@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-using namespace std;
 
 #ifndef POST_H
 #define POST_H
@@ -9,27 +8,27 @@ using namespace std;
 class Post
 {
 private:
-    string Title;
-    string Text;
-    string User;
+    std::string Title;
+    std::string Text;
+    std::string User;
     int options[4];
-    vector<string> LikeAliases;
-    vector<string> LoveAliases;
-    vector<string> HateAliases;
-    vector<string> DislikeAliases;
+    std::vector<std::string> LikeAliases;
+    std::vector<std::string> LoveAliases;
+    std::vector<std::string> HateAliases;
+    std::vector<std::string> DislikeAliases;
 
 public:
-    void setTitle (string m_title);
+    void setTitle (std::string m_title);
 
-    void setText (string m_text);
+    void setText (std::string m_text);
 
-    void setUser (string m_user);
+    void setUser (std::string m_user);
 
-    string getTitle() const;
+    std::string getTitle() const;
 
-    string getText() const;
+    std::string getText() const;
 
-    string getUser() const;
+    std::string getUser() const;
     
     
     //getter and set functions for reactions
@@ -44,10 +43,10 @@ public:
     void setHate(int hate);
     
     //iterator functions for reactions
-    void addLove(const string& alias);
-    void addLike(const string& alias);
-    void addDislike(const string& alias);
-    void addHate(const string& alias);
+    void addLove(const std::string& alias);
+    void addLike(const std::string& alias);
+    void addDislike(const std::string& alias);
+    void addHate(const std::string& alias);
 
     //Overloads ==
     friend bool operator ==(const Post& Post1, const Post& OtherPost);
@@ -55,13 +54,13 @@ public:
     //Constructors
     Post();
 
-    Post(string m_title, string m_text, string m_user);
+    Post(std::string m_title, std::string m_text, std::string m_user);
 
     //Destructor
     ~Post();
 
     //overloads << for Post class
-    friend ostream& operator <<(ostream& outputStream, const Post& p);
+    friend std::ostream& operator <<(std::ostream& outputStream, const Post& p);
     
     //adds user's alias to vector when they react to a post
     

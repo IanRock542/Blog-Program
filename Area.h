@@ -6,25 +6,20 @@
 #include "Post.h"
 #include "User.h"
 
-using namespace std;
-
-
-
-
 class Area
 {
 public:
     //returns Description of Area
-    string getDescription() const;
+    std::string getDescription() const;
 
 
-    void setDescription(string descrip);
+    void setDescription(std::string descrip);
 
     // return the name of the Area
-    string getName() const;
+    std::string getName() const;
 
     //set the name of the Area
-    void setName(string nm);
+    void setName(std::string nm);
 
     // return the index of the last post
     int getIndxLastPost() const;
@@ -38,7 +33,7 @@ public:
     void copyPost(int i, Post &p);
 
     //overloads << for Area class
-    friend ostream& operator <<(ostream& outputStream, const Area& area);
+    friend std::ostream& operator <<(std::ostream& outputStream, const Area& area);
 
     void DeletePost(int i);
 
@@ -46,14 +41,14 @@ public:
 
     bool checkEmpty();
 
-    string getUsername() const;
+    std::string getUsername() const;
     
     int getUType() const;
 
 private:
-    string Description; //description of Area
-    string Name; //name of Area
-    vector<Post> Posts;//vector of posts
+    std::string Description; //description of Area
+    std::string Name; //name of Area
+    std::vector<Post> Posts;//vector of posts
     User user;
 
 };

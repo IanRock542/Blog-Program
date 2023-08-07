@@ -2,8 +2,6 @@
 #include <vector>
 #include "User.h"
 
-using namespace std;
-
 #ifndef USER_LIST_H
 #define USER_LIST_H
 
@@ -23,7 +21,7 @@ public:
     void printList();
     
 private:
-    vector<H *> list;
+    std::vector<H *> list;
     int userType;
 };
 #endif

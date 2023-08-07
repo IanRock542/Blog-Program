@@ -1,6 +1,5 @@
 #include <iostream>
 #include <algorithm>
-#include <vector>
 using namespace std;
 #include "Post.h"
 
@@ -8,7 +7,7 @@ using namespace std;
 //Constructors
 Post::Post(): options{0, 0, 0, 0}{ }
 
-Post::Post(string m_title, string m_text, string m_user): options{0, 0, 0, 0}
+Post::Post(std::string m_title, std::string m_text, std::string m_user): options{0, 0, 0, 0}
 {
     Title = m_title;
     Text = m_text;
@@ -18,38 +17,38 @@ Post::Post(string m_title, string m_text, string m_user): options{0, 0, 0, 0}
 //Destructor
 Post::~Post()= default;
 
-void Post::setTitle (string m_title)
+void Post::setTitle (std::string m_title)
 {
     this->Title = m_title;
 }
 
-void Post::setText (string m_text)
+void Post::setText (std::string m_text)
 {
     this->Text = m_text;
 }
 
-void Post::setUser (string m_user)
+void Post::setUser (std::string m_user)
 {
     this->User = m_user;
 }
 
-string Post::getTitle() const
+std::string Post::getTitle() const
 {
     return this->Title;
 }
 
-string Post::getText() const
+std::string Post::getText() const
 {
     return this->Text;
 }
 
-string Post::getUser() const
+std::string Post::getUser() const
 {
     return this->User;
 }
 
 
-void Post::addLove(const string& alias)
+void Post::addLove(const std::string& alias)
 {
     this->options[0]++;
 
@@ -60,7 +59,7 @@ void Post::addLove(const string& alias)
 
 }
 
-void Post::addLike(const string& alias)
+void Post::addLike(const std::string& alias)
 {
     this->options[1]++;
     
@@ -68,7 +67,7 @@ void Post::addLike(const string& alias)
         LikeAliases.push_back(alias);
 }
 
-void Post::addDislike(const string& alias)
+void Post::addDislike(const std::string& alias)
 {
     this->options[2]++;
     
@@ -76,7 +75,7 @@ void Post::addDislike(const string& alias)
         DislikeAliases.push_back(alias);
 }
 
-void Post::addHate(const string& alias)
+void Post::addHate(const std::string& alias)
 {
     this->options[3]++;
     
@@ -132,47 +131,47 @@ bool operator ==(const Post& Post1, const Post& OtherPost)
 
 ostream& operator <<(ostream& outputStream, const Post& p)
 {
-    cout << "Title:" << p.Title << endl;
-    cout << "By:" << p.User << endl;
-    cout << "Text:" << p.Text << endl;
+    std::cout << "Title:" << p.Title << std::endl;
+    std::cout << "By:" << p.User << std::endl;
+    std::cout << "Text:" << p.Text << std::endl;
 
     //checks if
     if((p.options[0] != 0) || (p.options[1] != 0) || (p.options[2] != 0) ||( p.options[3] != 0))
     {
-        cout << "\nLoves: " << p.options[0] << " Likes: " << p.options[1] << endl;
-        cout << "Dislikes: " << p.options[2] << " Hates: " << p.options[3] << endl;
+        std::cout << "\nLoves: " << p.options[0] << " Likes: " << p.options[1] << std::endl;
+        std::cout << "Dislikes: " << p.options[2] << " Hates: " << p.options[3] << std::endl;
 
         //checks if vector of users who have reacted is empty
         if(!p.LoveAliases.empty())
         {
-            cout << "Loved by: " << endl;
+            std::cout << "Loved by: " << std::endl;
             for (const auto &LoveAlias: p.LoveAliases)
-                cout << LoveAlias << "\n\n";
+                std::cout << LoveAlias << "\n\n";
         }
 
         if(!p.LikeAliases.empty())
         {
-            cout << "Liked by: " << endl;
+            std::cout << "Liked by: " << std::endl;
             for (const auto &LikeAlias: p.LikeAliases)
-                cout << LikeAlias << "\n\n";
+                std::cout << LikeAlias << "\n\n";
         }
 
         if(!p.DislikeAliases.empty())
         {
-            cout << "Disliked by: " << endl;
+            std::cout << "Disliked by: " << std::endl;
             for (const auto &DislikeAlias: p.DislikeAliases)
-                cout << DislikeAlias << "\n\n";
+                std::cout << DislikeAlias << "\n\n";
         }
 
         if(!p.HateAliases.empty())
         {
-            cout << "Hated by: " << endl;
+            std::cout << "Hated by: " << std::endl;
             for (const auto &HateAlias: p.HateAliases)
-                cout << HateAlias << "\n\n";
+                std::cout << HateAlias << "\n\n";
         }
     }
     else
-        cout << "No reactions to this post yet." << endl;
+        std::cout << "No reactions to this post yet." << std::endl;
 
     return outputStream;
 }

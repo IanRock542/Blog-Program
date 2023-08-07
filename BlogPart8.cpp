@@ -13,68 +13,65 @@ About this project: This program lets the user select options from a menu to vie
 Using templates to take generic types.
 Assumptions: assumes correct user input. All work below was performed by Ian Rockette */
 
-
-using namespace std;
-
 //display menu
 void displayMenu();
 
 //User selects an action
-void promptAction(string &strCh);
+void promptAction(std::string &strCh);
 
 //implement Action
 template <class T>
-void implementAction(vector<Area> *areas, const string& strCh, T *u, UserList<User> *uList );
+void implementAction(std::vector<Area> *areas, const std::string& strCh, T *u, UserList<User> *uList );
 
-void DisplayBlogAreas(vector<Area> areas);
+void DisplayBlogAreas(std::vector<Area> areas);
 
 void DisplayPostsABlog(Area a);
 
 //Displays a single blog
-void DisplayOneBlogPost(vector<Area> areas);
+void DisplayOneBlogPost(std::vector<Area> areas);
 
-//get a valid string max chars
-string getValidString(int maxChars);
+//get a valid std::string max chars
+std::string getValidString(int maxChars);
 
 //get a valid blog area id
 int getValidBlogArea();
 
 //Lets user add their own post to a blog
-Post userAddPost(vector<Area> &areas, int);
+Post userAddPost(std::vector<Area> &areas, int);
 
 //lets user edit a blog post
-void editPost(vector<Area> &areas);
+void editPost(std::vector<Area> &areas);
 
 //compares titles
 bool compareTitles(const Post& p, Area area);
 
-void deletePost(vector<Area> &areas);
+void deletePost(std::vector<Area> &areas);
 
-void saveData(vector <Area> areas);
-void readData(vector <Area> &areas);
-
-template <class T>
-int login(vector<T*> u, vector <Area> &areas);
-
-void reactToPost(vector<Area> &areas);
-void deleteArea(vector<Area> &areas);
+void saveData(std::vector <Area> areas);
+void readData(std::vector <Area> &areas);
 
 template <class T>
-void changeAlias(T *u, vector<Area> &areas);
+int login(std::vector<T*> u, std::vector <Area> &areas);
+
+void reactToPost(std::vector<Area> &areas);
+void deleteArea(std::vector<Area> &areas);
+
+template <class T>
+void changeAlias(T *u, std::vector<Area> &areas);
 
 //transfer user vector data to UserList
 template <class T>
-void ListTransfer(vector<T*> user, UserList<User> *uList);
+void ListTransfer(std::vector<T*> user, UserList<User> *uList);
 
 int main()
 {
 
     
-    vector<Area> areas(5);
+    std::vector<Area> areas(5);
 
-    vector<Area> * areas_ptr = &areas;
-    vector<User> users;
-    vector<User*> user_ptr;
+    std::vector<Area> * areas_ptr = &areas;
+    std::vector<User> users;
+    std::vector<User*> user_ptr;
     SuperUser ian{"Ian", "ir22", "lol"};
     user_ptr.push_back(&ian);
     User bob{"Bob", "bobby", "bleh"};
@@ -91,9 +88,9 @@ int main()
     
     UserList <User> uList;
     ListTransfer(user_ptr, &uList);
-    cout << "Welcome to my Blog " << endl;
+    std::cout << "Welcome to my Blog " << std::endl;
 
-    string UserAction;
+    std::string UserAction;
     int userIndex = login(user_ptr, *areas_ptr);
     
     //sets userType for print function
@@ -120,36 +117,36 @@ int main()
 void displayMenu()
 {
     // display menu options to user
-    cout << "Please select from the following options..." << endl;
-    cout << " A  - Display Blog areas" << endl;
-    cout << " B  - Display all posts for a blog" << endl;
-    cout << " C  - Add a post to a blog" << endl;
-    cout << " D  - Display a post for a blog" << endl;
-    cout << " E  - Edit a post for a blog" << endl;
-    cout << " F  - Delete a post for a blog" << endl;
-    cout << " G  - Love/Like/Dislike/Hate a post" << endl;
-    cout << " X  - Delete an Area" << endl;
-    cout << " S  - Change an your Alias" << endl;
-    cout << " Z  - Display all users" << endl;
-    cout << " Q  - Quit\n\n";
+    std::cout << "Please select from the following options..." << std::endl;
+    std::cout << " A  - Display Blog areas" << std::endl;
+    std::cout << " B  - Display all posts for a blog" << std::endl;
+    std::cout << " C  - Add a post to a blog" << std::endl;
+    std::cout << " D  - Display a post for a blog" << std::endl;
+    std::cout << " E  - Edit a post for a blog" << std::endl;
+    std::cout << " F  - Delete a post for a blog" << std::endl;
+    std::cout << " G  - Love/Like/Dislike/Hate a post" << std::endl;
+    std::cout << " X  - Delete an Area" << std::endl;
+    std::cout << " S  - Change an your Alias" << std::endl;
+    std::cout << " Z  - Display all users" << std::endl;
+    std::cout << " Q  - Quit\n\n";
 
 }
 
 //User Action
-void promptAction(string &strCh)
+void promptAction(std::string &strCh)
 {
     //display menu options to screen
     displayMenu();
 
     //prompt user for choice
-    cout << "What would you like to do?\n";
-    cin >> strCh;
+    std::cout << "What would you like to do?\n";
+    std::cin >> strCh;
 
 }
 
 //implement User's Action
 template <class T>
-void implementAction(vector<Area> *areas, const string& strCh, T *u, UserList<User> *uList)
+void implementAction(std::vector<Area> *areas, const std::string& strCh, T *u, UserList<User> *uList)
 {
     Post p;
 
@@ -162,7 +159,7 @@ void implementAction(vector<Area> *areas, const string& strCh, T *u, UserList<Us
         // if user selects B
     else if ((strCh == "B") || (strCh == "b"))
     {
-        cout << "Display all posts for a blog..." << endl;
+        std::cout << "Display all posts for a blog..." << std::endl;
         int blogId = getValidBlogArea();
         DisplayPostsABlog(areas->at(blogId));
 
@@ -172,7 +169,7 @@ void implementAction(vector<Area> *areas, const string& strCh, T *u, UserList<Us
     {
 
         //user has wants to add a new post
-        cout << "Adding a new post..." << endl;
+        std::cout << "Adding a new post..." << std::endl;
         int blogId = getValidBlogArea();
         p = userAddPost(*areas, blogId);
         areas->at(blogId).AddPost(p);
@@ -188,7 +185,7 @@ void implementAction(vector<Area> *areas, const string& strCh, T *u, UserList<Us
     {
         saveData(*areas);
         //user has selected to quit
-        cout << "Bye..." << endl;
+        std::cout << "Bye..." << std::endl;
     }
     else if ((strCh == "E") || (strCh == "e"))
     {
@@ -217,26 +214,26 @@ void implementAction(vector<Area> *areas, const string& strCh, T *u, UserList<Us
     else
     {
         //user has selected an invalid option
-        cout << strCh << " is not a valid option." << endl;
+        std::cout << strCh << " is not a valid option." << std::endl;
     }
 }
 
 
-void DisplayBlogAreas(vector<Area> areas)
+void DisplayBlogAreas(std::vector<Area> areas)
 {
-    cout << "Display Blog areas..." << endl;
+    std::cout << "Display Blog areas..." << std::endl;
     //user has selected to display blog areas
     for (int i = 0; i < areas.size(); i++)
     {
-        cout << "Area Index:" << i << endl;
-        cout << areas[i] << endl;
-        cout << "******************" << endl;
+        std::cout << "Area Index:" << i << std::endl;
+        std::cout << areas[i] << std::endl;
+        std::cout << "******************" << std::endl;
     }
 }
 
 void DisplayPostsABlog(Area a)
 {
-    cout << "Posts for " << a.getName() << endl;
+    std::cout << "Posts for " << a.getName() << std::endl;
 
     //user has selected to display blog areas
     for (int i = 0; i <= a.getIndxLastPost(); i++)
@@ -245,34 +242,34 @@ void DisplayPostsABlog(Area a)
         bool found = a.getPost(i, p);
         if (found)
         {
-            cout << "Post Index:" << i << endl;
-            cout << p << endl;
-            cout << "******************" << endl;
+            std::cout << "Post Index:" << i << std::endl;
+            std::cout << p << std::endl;
+            std::cout << "******************" << std::endl;
         }
     }
 
 }
 
-void DisplayOneBlogPost(vector<Area> areas)
+void DisplayOneBlogPost(std::vector<Area> areas)
 {
     int areaIndex, blogIndex;
     areaIndex = getValidBlogArea();
 
-    cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-    cin >> blogIndex;
+    std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+    std::cin >> blogIndex;
 
     Post p;
     bool found = areas[areaIndex].getPost(blogIndex, p);
     while(!found)
     {
-        cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-        cin >> blogIndex;
+        std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+        std::cin >> blogIndex;
         found = areas[areaIndex].getPost(blogIndex, p);
     }
 
-    cout << "Post Index:" << blogIndex << endl;
-    cout << p << endl;
-    cout << "******************" << endl;
+    std::cout << "Post Index:" << blogIndex << std::endl;
+    std::cout << p << std::endl;
+    std::cout << "******************" << std::endl;
 
 }
 
@@ -280,141 +277,141 @@ int getValidBlogArea()
 {
     int area;
     //prompt and read in Blog Area Index
-    cout << "Please enter in a Blog Area Index" << endl;
-    cin >> area;
+    std::cout << "Please enter in a Blog Area Index" << std::endl;
+    std::cin >> area;
     //input validation loop
     while ((area < 0) || (area >= 5))
     {
-        cout << "Please enter in a Blog Area Index" << endl;
-        cin >> area;
+        std::cout << "Please enter in a Blog Area Index" << std::endl;
+        std::cin >> area;
     }
     //return valid Blog Area Index
     return area;
 }
 
-Post userAddPost(vector<Area> &areas, int areaIndex)
+Post userAddPost(std::vector<Area> &areas, int areaIndex)
 {
 
     Post p;
 
-    string Title;
-    cin.ignore();
+    std::string Title;
+    std::cin.ignore();
     do
     {
-        cout << "Please enter in the title..." << endl;
+        std::cout << "Please enter in the title..." << std::endl;
         Title = getValidString(20);
         p.setTitle(Title);
     }while(!compareTitles(p, areas[areaIndex]));
 
-    cout << "Please enter in the text..." << endl;
-    string Text = getValidString(500);
+    std::cout << "Please enter in the text..." << std::endl;
+    std::string Text = getValidString(500);
 
     p.setTitle(Title);
     p.setText(Text);
     p.setUser(areas[areaIndex].getUsername());
 
-    cout << "Post added successfully.\n";
+    std::cout << "Post added successfully.\n";
 
     return p;
 }
 
-void editPost(vector<Area> &areas)
+void editPost(std::vector<Area> &areas)
 {
     int areaIndex, blogIndex;
     areaIndex = getValidBlogArea();
 
     if(areas[areaIndex].checkEmpty())
-        cout << "This blog has no posts to edit." << endl;
+        std::cout << "This blog has no posts to edit." << std::endl;
     else
     {
-        cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-        cin >> blogIndex;
+        std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+        std::cin >> blogIndex;
 
         Post p;
         bool found = areas[areaIndex].getPost(blogIndex, p);
 
         while (!found)
         {
-            cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-            cin >> blogIndex;
+            std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+            std::cin >> blogIndex;
             found = areas[areaIndex].getPost(blogIndex, p);
         }
 
-        cout << p << endl;
+        std::cout << p << std::endl;
 
-        string Title;
-        cin.ignore();
+        std::string Title;
+        std::cin.ignore();
         do
         {
-            cout << "Please enter in the title..." << endl;
+            std::cout << "Please enter in the title..." << std::endl;
             Title = getValidString(20);
             p.setTitle(Title);
         } while (!compareTitles(p, areas[areaIndex]));
-        cout << "Please enter in the text..." << endl;
-        string Text = getValidString(500);
+        std::cout << "Please enter in the text..." << std::endl;
+        std::string Text = getValidString(500);
 
         p.setTitle(Title);
         p.setText(Text);
         p.setUser(areas[areaIndex].getUsername());
         areas[areaIndex].copyPost(blogIndex, p);
-        cout << "Post Edited" << endl;
+        std::cout << "Post Edited" << std::endl;
     }
 
 }
 
-void deletePost(vector<Area> &areas)
+void deletePost(std::vector<Area> &areas)
 {
     int areaIndex, blogIndex;
     areaIndex = getValidBlogArea();
 
 
     if(areas[areaIndex].checkEmpty())
-        cout << "This blog has no posts." << endl;
+        std::cout << "This blog has no posts." << std::endl;
     else
     {
-        cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-        cin >> blogIndex;
+        std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+        std::cin >> blogIndex;
         Post p;
 
         bool found = areas[areaIndex].getPost(blogIndex, p);
         while(!found)
         {
-            cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-            cin >> blogIndex;
+            std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+            std::cin >> blogIndex;
             found = areas[areaIndex].getPost(blogIndex, p);
         }
         areas[areaIndex].DeletePost(blogIndex);
-        cout << "Post Index:" << blogIndex << " deleted."<< endl;
+        std::cout << "Post Index:" << blogIndex << " deleted."<< std::endl;
 
     }
 
 }
 
-const string WHITESPACE = " \n\r\t\f\v";
+const std::string WHITESPACE = " \n\r\t\f\v";
 
-string ltrim(const string &s)
+std::string ltrim(const std::string &s)
 {
     size_t start = s.find_first_not_of(WHITESPACE);
     return (start == std::string::npos) ? "" : s.substr(start);
 }
 
-string rtrim(const string &s)
+std::string rtrim(const std::string &s)
 {
     size_t end = s.find_last_not_of(WHITESPACE);
     return (end == std::string::npos) ? "" : s.substr(0, end + 1);
 }
 
-string trim(const string &s)
+std::string trim(const std::string &s)
 {
     return rtrim(ltrim(s));
 }
 
-string getValidString(int maxChars)
+std::string getValidString(int maxChars)
 {
-    string text;
+    std::string text;
     do {
-        cout << "Please enter in a string with at least 1 character and at most " << maxChars << " characters." << endl;
-        getline(cin, text);
+        std::cout << "Please enter in a string with at least 1 character and at most " << maxChars << " characters." << std::endl;
+        getline(std::cin, text);
         text = trim(text);
     } while ((text.length() == 0) || (text.length() > maxChars));
     return text;
@@ -428,30 +425,30 @@ bool compareTitles(const Post& p, Area area)
         area.getPost(i, p2);
         if (p == p2)
         {
-            cout << "Another post in this blog has this identical title" << endl;
-            cout << "Please enter a new unique title" << endl;
+            std::cout << "Another post in this blog has this identical title" << std::endl;
+            std::cout << "Please enter a new unique title" << std::endl;
             return false;
         }
     }
     return true;
 }
 
-void saveData(vector <Area> areas)
+void saveData(std::vector <Area> areas)
 {
-    ofstream outputFile("Areas.txt");
-    ofstream outputFile2("Posts.txt");
+    std::ofstream outputFile("Areas.txt");
+    std::ofstream outputFile2("Posts.txt");
     if(outputFile.fail())
     {
-        cout<<"Error opening Areas.txt";
+        std::cout<<"Error opening Areas.txt";
         exit(1);
     }
-    outputFile << areas.size() << endl;
+    outputFile << areas.size() << std::endl;
 
     for (int i=0;i < areas.size();i++)
     {
-        outputFile<< areas[i].getName()<<endl;
-        outputFile<< areas[i].getDescription()<<endl;
-        outputFile << areas[i].getIndxLastPost() << endl;
+        outputFile<< areas[i].getName()<<std::endl;
+        outputFile<< areas[i].getDescription()<<std::endl;
+        outputFile << areas[i].getIndxLastPost() << std::endl;
 
         for (int j=0; j <= areas[i].getIndxLastPost();j++)
         {
@@ -459,13 +456,13 @@ void saveData(vector <Area> areas)
             bool found = areas[i].getPost(j, p);
             if (found)
             {
-                outputFile2 << p.getTitle() << endl;
-                outputFile2 << p.getUser() << endl;
-                outputFile2 << p.getText() << endl;
-                outputFile2 << p.getLove() << endl;
-                outputFile2 << p.getLike() << endl;
-                outputFile2 << p.getDislike() << endl;
-                outputFile2 << p.getHate() << endl;
+                outputFile2 << p.getTitle() << std::endl;
+                outputFile2 << p.getUser() << std::endl;
+                outputFile2 << p.getText() << std::endl;
+                outputFile2 << p.getLove() << std::endl;
+                outputFile2 << p.getLike() << std::endl;
+                outputFile2 << p.getDislike() << std::endl;
+                outputFile2 << p.getHate() << std::endl;
             }
         }
 
@@ -474,23 +471,23 @@ void saveData(vector <Area> areas)
     outputFile2.close();
 }
 
-void readData(vector <Area> &areas)
+void readData(std::vector <Area> &areas)
 {
-    ifstream areasFile("Areas.txt");
-    ifstream postFile("Posts.txt");
+    std::ifstream areasFile("Areas.txt");
+    std::ifstream postFile("Posts.txt");
     Post p;
-    string blogTitle,descrip, title, user, text;
-    int areaIndex=0, blogSize=0;
+    std::string blogTitle,descrip, title, user, text;
+    int areaIndex, blogSize=0;
 
     if(areasFile.fail())
     {
-        cout << "Error: Could not open Area file.";
+        std::cout << "Error: Could not open Area file.";
         exit(1);
     }
 
     if(postFile.fail())
     {
-        cout << "Error: Could not open Post file.";
+        std::cout << "Error: Could not open Post file.";
         exit(1);
     }
 
@@ -540,31 +537,31 @@ void readData(vector <Area> &areas)
 }
 
 template <class T>
-int login(const vector<T*> users, vector <Area> &areas)
+int login(const std::vector<T*> users, std::vector <Area> &areas)
 {
-    string name, alias, pwd, enteredAlias, enteredPwd;
+    std::string name, alias, pwd, enteredAlias, enteredPwd;
     bool comparison = false;
     int i;
 
     while(!comparison)
     {
-        cout << "Enter your username/alias: ";
-        getline(cin , enteredAlias);
+        std::cout << "Enter your username/alias: ";
+        getline(std::cin , enteredAlias);
         for(i = 0; i < users.size(); i++)
         {
             name = users[i]->getAlias();
             if(enteredAlias == name)
             {
                 pwd = users[i]->getPassword();
-                cout << "Enter your password: ";
-                getline(cin, enteredPwd);
+                std::cout << "Enter your password: ";
+                getline(std::cin, enteredPwd);
                 while(enteredPwd != pwd)
                 {
-                    cout << "Enter your password: ";
-                    getline(cin, enteredPwd);
+                    std::cout << "Enter your password: ";
+                    getline(std::cin, enteredPwd);
                 }
 
-                cout << *users[i] << endl;
+                std::cout << *users[i] << std::endl;
                 for(auto & area : areas)
                     area.setUser(*users[i]);
 
@@ -577,31 +574,31 @@ int login(const vector<T*> users, vector <Area> &areas)
     return 0;
 }
 
-void reactToPost(vector<Area> &areas)
+void reactToPost(std::vector<Area> &areas)
 {
     int areaIndex, blogIndex;
     areaIndex = getValidBlogArea();
     char choice;
 
-    cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-    cin >> blogIndex;
+    std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+    std::cin >> blogIndex;
 
     Post p;
     bool found = areas[areaIndex].getPost(blogIndex, p);
     while(!found)
     {
-        cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
-        cin >> blogIndex;
+        std::cout << "Please enter a valid post id for: " << areas[areaIndex].getName() << "\n";
+        std::cin >> blogIndex;
         found = areas[areaIndex].getPost(blogIndex, p);
     }
 
-    cout << "Enter:\n";
-    cout << "A to love the post." << endl;
-    cout << "B to like the post." << endl;
-    cout << "C to dislike the post." << endl;
-    cout << "D to hate the post." << endl;
+    std::cout << "Enter:\n";
+    std::cout << "A to love the post." << std::endl;
+    std::cout << "B to like the post." << std::endl;
+    std::cout << "C to dislike the post." << std::endl;
+    std::cout << "D to hate the post." << std::endl;
 
-    cin >> choice;
+    std::cin >> choice;
     tolower(choice);
 
 
@@ -626,14 +623,14 @@ void reactToPost(vector<Area> &areas)
         areas[areaIndex].copyPost(blogIndex, p);
     }
     else
-        cout << "Invalid option" << endl;
+        std::cout << "Invalid option" << std::endl;
 }
 
-void deleteArea(vector<Area> &areas)
+void deleteArea(std::vector<Area> &areas)
 {
     //checks user type to make sure that the user has permission to perform this action
     if(areas[0].getUType() != 1)
-        cout << "You do not have permission to perform this action. Only Superusers can delete areas." << endl;
+        std::cout << "You do not have permission to perform this action. Only Superusers can delete areas." << std::endl;
     else
     {
         int areaIndex = getValidBlogArea();
@@ -649,13 +646,13 @@ void deleteArea(vector<Area> &areas)
         size_t new_size = areas.size();
         areas.resize(new_size);
 
-        cout << "Blog Index: " << areaIndex << " deleted" << endl;
+        std::cout << "Blog Index: " << areaIndex << " deleted" << std::endl;
 
     }
 }
 
 template <class T>
-void changeAlias(T *u, vector<Area> &areas)
+void changeAlias(T *u, std::vector<Area> &areas)
 {
     u->changeAlias();
     //updates user info for all areas
@@ -664,11 +661,11 @@ void changeAlias(T *u, vector<Area> &areas)
 }
 
 template <class T>
-void ListTransfer(const vector<T*> user, UserList<User> *uList)
+void ListTransfer(const std::vector<T*> user, UserList<User> *uList)
 {
     for (int i = 0; i < user.size(); i++)
     {
         uList->addToList(user[i]);
-        //cout << "Added user: " << user[i] << " to the list.\n";
+        //std::cout << "Added user: " << user[i] << " to the list.\n";
     }
 }

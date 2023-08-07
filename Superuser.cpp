@@ -5,7 +5,7 @@ SuperUser::SuperUser()
     this->setUserType(SUPERUSER);
 }
 
-SuperUser::SuperUser(string nm, string al, string pw):User(nm, al, pw)
+SuperUser::SuperUser(std::string nm, std::string al, std::string pw):User(nm, al, pw)
 {
     this->setUserType(SUPERUSER);
 }
@@ -13,8 +13,8 @@ SuperUser::SuperUser(string nm, string al, string pw):User(nm, al, pw)
 //Only superusers can use this function
 void SuperUser::changeAlias()
 {
-    string alias;
-    cout << "Enter the new alias: " ;
-    cin >> alias;
+    std::string alias;
+    std::cout << "Enter the new alias: " ;
+    std::cin >> alias;
     this-> setAlias(alias);
 }

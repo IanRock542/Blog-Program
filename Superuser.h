@@ -8,7 +8,7 @@ class SuperUser: public User
 {
 public:
     SuperUser();
-    SuperUser(string nm, string al, string pw);
+    SuperUser(std::string nm, std::string al, std::string pw);
     
     virtual void changeAlias();
 };

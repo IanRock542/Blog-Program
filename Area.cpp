@@ -1,29 +1,25 @@
 #include <iostream>
 #include "Area.h"
 
-using namespace std;
-
-
-
-string Area::getDescription() const
+std::string Area::getDescription() const
 {
     return this->Description;
 }
 
 
-void Area::setDescription(string descrip)
+void Area::setDescription(std::string descrip)
 {
     this->Description = descrip;
 }
 
 // return the name of the Area
-string Area::getName() const
+std::string Area::getName() const
 {
     return this->Name;
 }
 
 //set the name of the Area
-void Area::setName(string nm)
+void Area::setName(std::string nm)
 {
     this->Name = nm;
 }
@@ -78,7 +74,7 @@ bool Area::checkEmpty()
         return false;
 }
 
-string Area::getUsername() const
+std::string Area::getUsername() const
 {
     return this->user.getAlias();
 }
@@ -93,10 +89,10 @@ int Area::getUType() const
     return this->user.getUserType();
 }
 
-ostream& operator <<(ostream& outputStream, const Area& area)
+std::ostream& operator <<(std::ostream& outputStream, const Area& area)
 {
-    cout << "Area Name:" << area.Name << endl;
-    cout << "Description: " << area.Description << endl;
+    std::cout << "Area Name:" << area.Name << std::endl;
+    std::cout << "Description: " << area.Description << std::endl;
 
     return outputStream;
 }

@@ -27,4 +27,4 @@ UserList.o: UserList.h UserList.cpp
 		 $(CC) -c UserList.h
 		 $(CC) -c UserList.cpp
 clean:
-		rm -rf *.o, *.gch  BlogPart8
+		rm -rf *.o  *.gch  BlogPart8

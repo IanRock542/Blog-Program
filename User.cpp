@@ -3,15 +3,15 @@
 
 class Area;
 
-void User::setName(string nm)
+void User::setName(std::string nm)
 {
     Name = nm;
 }
-void User::setAlias(string alias)
+void User::setAlias(std::string alias)
 {
     Alias = alias;
 }
-void User::setPassword(string pwd)
+void User::setPassword(std::string pwd)
 {
     Password = pwd;
 }
@@ -21,15 +21,15 @@ void User::setUserType(int utype)
     UserType = utype;
 }
 
-string User::getName() const
+std::string User::getName() const
 {
     return this->Name;
 }
-string User::getAlias() const
+std::string User::getAlias() const
 {
     return this->Alias;
 }
-string User::getPassword() const
+std::string User::getPassword() const
 {
     return this->Password;
 }
@@ -44,23 +44,23 @@ User::User()
     this->setUserType(NORMAL);
 }
 
-User::User(string nm, string alias, string pwd):Name(nm), Alias(alias), Password(pwd)
+User::User(std::string nm, std::string alias, std::string pwd):Name(nm), Alias(alias), Password(pwd)
 {
     this->setUserType(NORMAL);
 }
 
 void User::changeAlias()
 {
-    cout << "You do not have permission to perform this action." << endl;
+    std::cout << "You do not have permission to perform this action." << std::endl;
 }
 
 
 
-ostream& operator <<(ostream& outputStream, const User& user)
+std::ostream& operator <<(std::ostream& outputStream, const User& user)
 {
     if(user.UserType == 1)
-        cout << "-----SUPER USER----"  << endl;
-    cout << "Hello, "  << user.Name << endl;
+        std::cout << "-----SUPER USER----"  << std::endl;
+    std::cout << "Hello, "  << user.Name << std::endl;
 
     return outputStream;
 }

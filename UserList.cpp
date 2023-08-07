@@ -3,7 +3,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-using namespace std;
 //constructor
 template <class H> UserList<H>::UserList()
 {
@@ -34,9 +33,9 @@ template <class H> void UserList<H>::printList()
     if(userType == 1)
     {
         for (int i = 0; i < list.size(); i++)
-        cout << "Name: " << list[i]->getName() << "\tAlias: " << list[i]->getAlias() << "\n";
+        std::cout << "Name: " << list[i]->getName() << "\tAlias: " << list[i]->getAlias() << std::endl;
         
     }
     else
-        cout << "You do not have permission to perform this action\n";
+        std::cout << "You do not have permission to perform this action\n";
 }
