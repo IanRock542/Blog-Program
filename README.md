@@ -1,0 +1,3 @@
+# Blog Program
+
+This program emulates a simple blog where with blog areas, the attributes of the blog areas, and the ability to display a post for a blog and add a post to a blog. There are two user types in the program: Basic users and Superusers. Superusers have additional permissions that Basic users do not have. All of these features were implemented with progressively complex data structures in C++ such as OOP, inheritance, polymorphism, virtual functions, and templates. 
